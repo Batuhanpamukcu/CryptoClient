@@ -6,19 +6,20 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var cryptoCurrencies = [CryptoCurrency]() {
+    var cryptoCurrencies = [CryptoCurrency]() /*{
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
     }
-    
+    */
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -26,7 +27,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.delegate = self
         tableView.dataSource = self
         
-        getdata()
+        getData()
         
     }
     
@@ -35,12 +36,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell ()
-        cell.textLabel?.text = cryptoCurrencies[indexPath.row].name.capitalized
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CryptoCell", for: indexPath) as! CryptoTableViewCell
+        cell.coinImage.kf.setImage(with: URL(string: cryptoCurrencies[indexPath.row].icon))
+        cell.currencyText.text = cryptoCurrencies[indexPath.row].name
+        cell.priceText.text = String("USD \(cryptoCurrencies[indexPath.row].price)".split(separator: ".")[0]) + "," + String("\(cryptoCurrencies[indexPath.row].price)".split(separator: ".")[1].prefix(4))
+        
         return cell
     }
     
-    func getdata() {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    /*
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier = "toDetailsViewController" {
+            let destinationVC = segue.destination as! DetailsViewController
+            
+        }
+    }
+    */
+    func getData() {
         let url = URL(string: "https://api.coinstats.app/public/v1/coins")
         let session = URLSession.shared
         let task = session.dataTask(with: url!) { (data: Data?, response: URLResponse?, error: Error?) in
@@ -50,11 +65,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             } else {
                 if data != nil {
                     do {
-                        /*let json = try! JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: Any]*/
-                        
                         let decoder = JSONDecoder()
                         let result = try decoder.decode(CryptoCurrencyResponse.self, from: data!)
                         self.cryptoCurrencies = result.coins!
+                        
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
                         
                     } catch {
                         print(error.localizedDescription)
@@ -66,9 +83,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         task.resume()
     }
-
-    /*
-    func getData() {
+    
+    func getData2() {
         
         let url = URL(string: "https://api.coinstats.app/public/v1/coins")
         let session = URLSession.shared
@@ -94,7 +110,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         task.resume()
     }
-    */
 
 }
 
+extension UIImageView {
+    func load(url: String) {
+        guard let url = URL(string: url) else{ return }
+         DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
+    }
+}
