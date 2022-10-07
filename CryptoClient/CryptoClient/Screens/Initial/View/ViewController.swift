@@ -12,6 +12,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBOutlet weak var tableView: UITableView!
     
+    var selectedRow:Int = 0
+    
     var cryptoCurrencies = [CryptoCurrency]() /*{
         didSet {
             DispatchQueue.main.async {
@@ -45,16 +47,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        selectedRow = indexPath.row
+        self.performSegue(withIdentifier: "toDetailsViewController", sender: nil)
     }
-    /*
+        
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier = "toDetailsViewController" {
+        if segue.identifier == "toDetailsViewController" {
             let destinationVC = segue.destination as! DetailsViewController
-            
+            destinationVC.detail = cryptoCurrencies[selectedRow]
         }
     }
-    */
+    
     func getData() {
         let url = URL(string: "https://api.coinstats.app/public/v1/coins")
         let session = URLSession.shared
@@ -82,48 +85,5 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         task.resume()
-    }
-    
-    func getData2() {
-        
-        let url = URL(string: "https://api.coinstats.app/public/v1/coins")
-        let session = URLSession.shared
-        
-        let task = session.dataTask(with: url!) { (data: Data?, response: URLResponse?, error: Error?) in
-            
-            if error != nil {
-                print("error")
-            } else {
-                if data != nil {
-                    do {
-                        let json = try! JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers) as! [String: Any]
-                        
-                        print(json)
-                        
-                    } catch {
-                        print("error")
-                    }
-                }
-            }
-            
-        }
-        
-        task.resume()
-    }
-
-}
-
-extension UIImageView {
-    func load(url: String) {
-        guard let url = URL(string: url) else{ return }
-         DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
-                    }
-                }
-            }
-        }
     }
 }
