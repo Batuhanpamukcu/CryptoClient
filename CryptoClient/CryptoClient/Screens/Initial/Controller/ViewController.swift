@@ -12,7 +12,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBOutlet weak var tableView: UITableView!
     
-    var selectedRow:Int = 0
+    var selectedRow: Int = 0
     
     var cryptoCurrencies = [CryptoCurrency]() /*{
         didSet {
@@ -40,8 +40,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CryptoCell", for: indexPath) as! CryptoTableViewCell
         cell.coinImage.kf.setImage(with: URL(string: cryptoCurrencies[indexPath.row].icon))
+        cell.symbolLabel.text = cryptoCurrencies[indexPath.row].symbol
         cell.currencyText.text = cryptoCurrencies[indexPath.row].name
-        cell.priceText.text = String("USD \(cryptoCurrencies[indexPath.row].price)".split(separator: ".")[0]) + "," + String("\(cryptoCurrencies[indexPath.row].price)".split(separator: ".")[1].prefix(4))
+        cell.priceText.text = String("$ \(cryptoCurrencies[indexPath.row].price)".split(separator: ".")[0]) + "," + String("\(cryptoCurrencies[indexPath.row].price)".split(separator: ".")[1].prefix(2))
         
         return cell
     }

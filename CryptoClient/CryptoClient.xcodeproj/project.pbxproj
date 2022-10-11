@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		633857E86BCA3DF522E09B28 /* Pods_CryptoClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C3B9443EA29FA4E59928D64 /* Pods_CryptoClient.framework */; };
 		93CAB69028EF106400E8E6F2 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CAB68F28EF106400E8E6F2 /* DetailsViewController.swift */; };
+		93CAB69328F04EAE00E8E6F2 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 93CAB69228F04EAE00E8E6F2 /* Charts */; };
+		93CAB69A28F40AC600E8E6F2 /* Chart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CAB69928F40AC600E8E6F2 /* Chart.swift */; };
+		93CAB69C28F57AA800E8E6F2 /* PillMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CAB69B28F57AA800E8E6F2 /* PillMarker.swift */; };
 		93DB6CE728E5CE01004A0BB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DB6CE628E5CE01004A0BB1 /* AppDelegate.swift */; };
 		93DB6CE928E5CE01004A0BB1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DB6CE828E5CE01004A0BB1 /* SceneDelegate.swift */; };
 		93DB6CEB28E5CE01004A0BB1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DB6CEA28E5CE01004A0BB1 /* ViewController.swift */; };
@@ -22,6 +25,8 @@
 /* Begin PBXFileReference section */
 		3C3B9443EA29FA4E59928D64 /* Pods_CryptoClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93CAB68F28EF106400E8E6F2 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		93CAB69928F40AC600E8E6F2 /* Chart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chart.swift; sourceTree = "<group>"; };
+		93CAB69B28F57AA800E8E6F2 /* PillMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillMarker.swift; sourceTree = "<group>"; };
 		93DB6CE328E5CE01004A0BB1 /* CryptoClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93DB6CE628E5CE01004A0BB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93DB6CE828E5CE01004A0BB1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,12 +47,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				633857E86BCA3DF522E09B28 /* Pods_CryptoClient.framework in Frameworks */,
+				93CAB69328F04EAE00E8E6F2 /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		93CAB69728F40A7600E8E6F2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				93CAB69928F40AC600E8E6F2 /* Chart.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		93CAB69828F40A8D00E8E6F2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				93CAB68F28EF106400E8E6F2 /* DetailsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		93DB6CDA28E5CE01004A0BB1 = {
 			isa = PBXGroup;
 			children = (
@@ -103,7 +125,6 @@
 				93FF151E28E70DE50080B590 /* Model */,
 				93FF151C28E70DAE0080B590 /* View */,
 				93FF151D28E70DD40080B590 /* Controller */,
-				93FF152128ED70D20080B590 /* CryptoTableViewCell.swift */,
 			);
 			path = Initial;
 			sourceTree = "<group>";
@@ -111,7 +132,7 @@
 		93FF151C28E70DAE0080B590 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				93DB6CEA28E5CE01004A0BB1 /* ViewController.swift */,
+				93FF152128ED70D20080B590 /* CryptoTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -119,6 +140,7 @@
 		93FF151D28E70DD40080B590 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				93DB6CEA28E5CE01004A0BB1 /* ViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -134,7 +156,9 @@
 		93FF152328EEE2640080B590 /* Details */ = {
 			isa = PBXGroup;
 			children = (
-				93CAB68F28EF106400E8E6F2 /* DetailsViewController.swift */,
+				93CAB69828F40A8D00E8E6F2 /* Controller */,
+				93CAB69728F40A7600E8E6F2 /* Model */,
+				93CAB69B28F57AA800E8E6F2 /* PillMarker.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -174,6 +198,9 @@
 			dependencies = (
 			);
 			name = CryptoClient;
+			packageProductDependencies = (
+				93CAB69228F04EAE00E8E6F2 /* Charts */,
+			);
 			productName = CryptoClient;
 			productReference = 93DB6CE328E5CE01004A0BB1 /* CryptoClient.app */;
 			productType = "com.apple.product-type.application";
@@ -202,6 +229,9 @@
 				Base,
 			);
 			mainGroup = 93DB6CDA28E5CE01004A0BB1;
+			packageReferences = (
+				93CAB69128F04EAE00E8E6F2 /* XCRemoteSwiftPackageReference "Charts" */,
+			);
 			productRefGroup = 93DB6CE428E5CE01004A0BB1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -272,10 +302,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				93DB6CEB28E5CE01004A0BB1 /* ViewController.swift in Sources */,
+				93CAB69A28F40AC600E8E6F2 /* Chart.swift in Sources */,
 				93DB6CE728E5CE01004A0BB1 /* AppDelegate.swift in Sources */,
 				93DB6CE928E5CE01004A0BB1 /* SceneDelegate.swift in Sources */,
 				93FF152228ED70D20080B590 /* CryptoTableViewCell.swift in Sources */,
 				93FF152028E713BA0080B590 /* CryptoCurrency.swift in Sources */,
+				93CAB69C28F57AA800E8E6F2 /* PillMarker.swift in Sources */,
 				93CAB69028EF106400E8E6F2 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -496,6 +528,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		93CAB69128F04EAE00E8E6F2 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		93CAB69228F04EAE00E8E6F2 /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 93CAB69128F04EAE00E8E6F2 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 93DB6CDB28E5CE01004A0BB1 /* Project object */;
 }

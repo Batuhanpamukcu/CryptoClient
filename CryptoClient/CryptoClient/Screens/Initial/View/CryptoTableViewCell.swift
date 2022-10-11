@@ -12,6 +12,7 @@ class CryptoTableViewCell: UITableViewCell {
     @IBOutlet weak var currencyText: UILabel!
     @IBOutlet weak var priceText: UILabel!
     @IBOutlet weak var coinImage: UIImageView!
+    @IBOutlet weak var symbolLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,7 +24,7 @@ class CryptoTableViewCell: UITableViewCell {
         self.imageView?.image = nil
         self.currencyText.text = nil
         self.priceText.text = nil
-        
+        self.symbolLabel.text = nil
         
     }
 
