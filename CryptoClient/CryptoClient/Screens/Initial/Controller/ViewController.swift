@@ -15,19 +15,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var selectedRow: Int = 0
     var filteredData = [CryptoCurrency]()
-    
-    var cryptoCurrencies = [CryptoCurrency]() /*{
-        didSet {
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
-    */
+    var cryptoCurrencies = [CryptoCurrency]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -37,40 +28,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-    /*
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cryptoCurrencies.count
-    }*/
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredData.count
     }
     
-    /*
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CryptoCell", for: indexPath) as! CryptoTableViewCell
-        cell.coinImage.kf.setImage(with: URL(string: cryptoCurrencies[indexPath.row].icon))
-        cell.symbolLabel.text = cryptoCurrencies[indexPath.row].symbol
-        cell.currencyText.text = cryptoCurrencies[indexPath.row].name
-        cell.priceText.text = String("$ \(cryptoCurrencies[indexPath.row].price)".split(separator: ".")[0]) + "," + String("\(cryptoCurrencies[indexPath.row].price)".split(separator: ".")[1].prefix(2))
-        
-        return cell
-    }*/
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CryptoCell", for: indexPath) as! CryptoTableViewCell
-        if filteredData.count != cryptoCurrencies.count {
-            cell.coinImage.kf.setImage(with: URL(string: filteredData[indexPath.row].icon))
-            cell.symbolLabel.text = filteredData[indexPath.row].symbol
-            cell.currencyText.text = filteredData[indexPath.row].name
-            cell.priceText.text = String("$ \(filteredData[indexPath.row].price)".split(separator: ".")[0]) + "," + String("\(filteredData[indexPath.row].price)".split(separator: ".")[1].prefix(2))
-            
-        }else {
-            cell.coinImage.kf.setImage(with: URL(string: cryptoCurrencies[indexPath.row].icon))
-            cell.symbolLabel.text = cryptoCurrencies[indexPath.row].symbol
-            cell.currencyText.text = cryptoCurrencies[indexPath.row].name
-            cell.priceText.text = String("$ \(cryptoCurrencies[indexPath.row].price)".split(separator: ".")[0]) + "," + String("\(cryptoCurrencies[indexPath.row].price)".split(separator: ".")[1].prefix(2))
-        }
+        cell.coinImage.kf.setImage(with: URL(string: filteredData[indexPath.row].icon))
+        cell.symbolLabel.text = filteredData[indexPath.row].symbol
+        cell.currencyText.text = filteredData[indexPath.row].name
+        cell.priceText.text = String("$ \(filteredData[indexPath.row].price)".split(separator: ".")[0]) + "," + String("\(filteredData[indexPath.row].price)".split(separator: ".")[1].prefix(2))
         
         return cell
     }
@@ -88,12 +55,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetailsViewController" {
             let destinationVC = segue.destination as! DetailsViewController
-            if filteredData.count != cryptoCurrencies.count {
-                destinationVC.detail = filteredData[selectedRow]
-            } else {
-                destinationVC.detail = cryptoCurrencies[selectedRow]
-            }
-            
+            destinationVC.detail = filteredData[selectedRow]
         }
     }
     
