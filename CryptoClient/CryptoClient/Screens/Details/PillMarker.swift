@@ -6,20 +6,16 @@
 //
 
 import Foundation
-class PillMarker: MarkerImage {
+import UIKit
+import Charts
+
+class PillMarker: MarkerImage, ChartViewDelegate {
 
     private (set) var color: UIColor
     private (set) var font: UIFont
     private (set) var textColor: UIColor
     private var labelText: String = ""
     private var attrs: [NSAttributedString.Key: AnyObject]!
-
-    static let formatter: DateComponentsFormatter = {
-        let f = DateComponentsFormatter()
-        f.allowedUnits = [.minute, .second]
-        f.unitsStyle = .short
-        return f
-    }()
 
     init(color: UIColor, font: UIFont, textColor: UIColor) {
         self.color = color
@@ -61,8 +57,6 @@ class PillMarker: MarkerImage {
     }
 
     private func customString(_ value: Double) -> String {
-        let formattedString = PillMarker.formatter.string(from: TimeInterval(value))!
-        // using this to convert the left axis values formatting, ie 2 min
-        return "\(formattedString)"
+        return "$\(value)"
     }
 }
