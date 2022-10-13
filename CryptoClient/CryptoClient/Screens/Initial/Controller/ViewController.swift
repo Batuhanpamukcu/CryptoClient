@@ -42,21 +42,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredData = searchText.isEmpty ? cryptoCurrencies : cryptoCurrencies.filter { $0.name.contains(searchText) }
-        tableView.reloadData()
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedRow = indexPath.row
         self.performSegue(withIdentifier: "toDetailsViewController", sender: nil)
     }
-        
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetailsViewController" {
             let destinationVC = segue.destination as! DetailsViewController
             destinationVC.detail = filteredData[selectedRow]
         }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredData = searchText.isEmpty ? cryptoCurrencies : cryptoCurrencies.filter { $0.name.uppercased().contains(searchText.uppercased()) }
+        tableView.reloadData()
     }
     
     func getData() {
@@ -74,7 +74,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         self.cryptoCurrencies = result.coins!
                         self.filteredData = self.cryptoCurrencies
                         
-                        
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
                         }
@@ -84,7 +83,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     }
                 }
             }
-            
         }
         
         task.resume()
