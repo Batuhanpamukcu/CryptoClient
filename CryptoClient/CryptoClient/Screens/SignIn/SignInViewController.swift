@@ -6,28 +6,78 @@
 //
 
 import UIKit
+import Firebase
+import SwiftUI
 
 class SignInViewController: UIViewController {
 
+    @IBOutlet weak var emailText: UITextField!
+    
+    @IBOutlet weak var passwordText: UITextField!
+    
+    @IBOutlet weak var showPasswordButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        self.navigationItem.hidesBackButton = true
+        passwordText.isSecureTextEntry = true
+        
+        /*
+        showPasswordButton.setImage(UIImage(named: "eye"), for: .normal)
+        showPasswordButton.imageView?.contentMode = .scaleAspectFill
+        */
     }
     
-
+    @IBAction func showPasswordClicked(_ sender: Any) {
+        if passwordText.text != "" {
+            if passwordText.isSecureTextEntry == true {
+                passwordText.isSecureTextEntry = false
+            } else {
+                passwordText.isSecureTextEntry = true
+            }
+        }
+    }
     
     @IBAction func signInClicked(_ sender: Any) {
-        performSegue(withIdentifier: "mainSegue", sender: nil)
+        
+        if emailText.text != "" && passwordText.text != "" {
+            Auth.auth().signIn(withEmail: emailText.text!, password: passwordText.text!) { authdata, error in
+                if let error = error {
+                    self.makeAlert(titleInput: "Error", massageInput: error.localizedDescription)
+                } else {
+                    self.performSegue(withIdentifier: "mainSegue", sender: nil)
+                }
+                
+            }
+        } else {
+            makeAlert(titleInput: "Error", massageInput: "email and password must be entered")
+        }
+        
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func signUpClicked(_ sender: Any) {
+        
+        if emailText.text != "" && passwordText.text != "" {
+            Auth.auth().createUser(withEmail: emailText.text!, password: passwordText.text!) { authdata, error in
+                if let error = error {
+                    self.makeAlert(titleInput: "Error", massageInput: error.localizedDescription)
+                } else {
+                    self.performSegue(withIdentifier: "mainSegue", sender: nil)
+                }
+            }
+        } else {
+            makeAlert(titleInput: "Error", massageInput: "email and password must be entered")
+        }
     }
-    */
+    
+    func makeAlert(titleInput: String, massageInput: String) {
+        
+        let alert = UIAlertController(title: titleInput, message: massageInput, preferredStyle: UIAlertController.Style.alert)
+        let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+        alert.addAction(okButton)
+        self.present(alert, animated: true, completion: nil)
+        
+    }
 
 }

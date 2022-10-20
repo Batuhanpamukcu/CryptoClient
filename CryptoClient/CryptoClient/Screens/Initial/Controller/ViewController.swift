@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import Firebase
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
@@ -26,6 +27,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         getData()
         
+        self.navigationItem.hidesBackButton = true
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(logOutTapped))
+        
+    }
+    
+    @objc func logOutTapped() {
+        
+        do {
+            try Auth.auth().signOut()
+            self.performSegue(withIdentifier: "toLoginViewController", sender: nil)
+            
+        }catch {
+            print(error)
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

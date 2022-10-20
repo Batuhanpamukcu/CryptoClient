@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		633857E86BCA3DF522E09B28 /* Pods_CryptoClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C3B9443EA29FA4E59928D64 /* Pods_CryptoClient.framework */; };
 		93761AAC28FEE5B400BE9EDA /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93761AAB28FEE5B400BE9EDA /* SignInViewController.swift */; };
+		93761ABA290037E400BE9EDA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93761AB9290037E400BE9EDA /* GoogleService-Info.plist */; };
+		93761ABD290038F600BE9EDA /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 93761ABC290038F600BE9EDA /* FirebaseAnalytics */; };
+		93761ABF290038F600BE9EDA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 93761ABE290038F600BE9EDA /* FirebaseAuth */; };
+		93761AC1290038F600BE9EDA /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 93761AC0290038F600BE9EDA /* FirebaseFirestore */; };
+		93761AC3290038F600BE9EDA /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 93761AC2290038F600BE9EDA /* FirebaseStorage */; };
 		93CAB69028EF106400E8E6F2 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CAB68F28EF106400E8E6F2 /* DetailsViewController.swift */; };
 		93CAB69328F04EAE00E8E6F2 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 93CAB69228F04EAE00E8E6F2 /* Charts */; };
 		93CAB69A28F40AC600E8E6F2 /* Chart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CAB69928F40AC600E8E6F2 /* Chart.swift */; };
@@ -26,6 +31,7 @@
 /* Begin PBXFileReference section */
 		3C3B9443EA29FA4E59928D64 /* Pods_CryptoClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93761AAB28FEE5B400BE9EDA /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		93761AB9290037E400BE9EDA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		93CAB68F28EF106400E8E6F2 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		93CAB69928F40AC600E8E6F2 /* Chart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chart.swift; sourceTree = "<group>"; };
 		93CAB69B28F57AA800E8E6F2 /* PillMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillMarker.swift; sourceTree = "<group>"; };
@@ -50,6 +56,10 @@
 			files = (
 				633857E86BCA3DF522E09B28 /* Pods_CryptoClient.framework in Frameworks */,
 				93CAB69328F04EAE00E8E6F2 /* Charts in Frameworks */,
+				93761ABD290038F600BE9EDA /* FirebaseAnalytics in Frameworks */,
+				93761AC1290038F600BE9EDA /* FirebaseFirestore in Frameworks */,
+				93761ABF290038F600BE9EDA /* FirebaseAuth in Frameworks */,
+				93761AC3290038F600BE9EDA /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +125,7 @@
 				93DB6CEF28E5CE03004A0BB1 /* Assets.xcassets */,
 				93DB6CF128E5CE03004A0BB1 /* LaunchScreen.storyboard */,
 				93DB6CF428E5CE03004A0BB1 /* Info.plist */,
+				93761AB9290037E400BE9EDA /* GoogleService-Info.plist */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -211,6 +222,10 @@
 			name = CryptoClient;
 			packageProductDependencies = (
 				93CAB69228F04EAE00E8E6F2 /* Charts */,
+				93761ABC290038F600BE9EDA /* FirebaseAnalytics */,
+				93761ABE290038F600BE9EDA /* FirebaseAuth */,
+				93761AC0290038F600BE9EDA /* FirebaseFirestore */,
+				93761AC2290038F600BE9EDA /* FirebaseStorage */,
 			);
 			productName = CryptoClient;
 			productReference = 93DB6CE328E5CE01004A0BB1 /* CryptoClient.app */;
@@ -242,6 +257,7 @@
 			mainGroup = 93DB6CDA28E5CE01004A0BB1;
 			packageReferences = (
 				93CAB69128F04EAE00E8E6F2 /* XCRemoteSwiftPackageReference "Charts" */,
+				93761ABB290038F600BE9EDA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 93DB6CE428E5CE01004A0BB1 /* Products */;
 			projectDirPath = "";
@@ -258,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				93DB6CF328E5CE03004A0BB1 /* LaunchScreen.storyboard in Resources */,
+				93761ABA290037E400BE9EDA /* GoogleService-Info.plist in Resources */,
 				93DB6CF028E5CE03004A0BB1 /* Assets.xcassets in Resources */,
 				93DB6CEE28E5CE01004A0BB1 /* Main.storyboard in Resources */,
 			);
@@ -542,6 +559,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		93761ABB290038F600BE9EDA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 		93CAB69128F04EAE00E8E6F2 /* XCRemoteSwiftPackageReference "Charts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielgindi/Charts.git";
@@ -553,6 +578,26 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		93761ABC290038F600BE9EDA /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 93761ABB290038F600BE9EDA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		93761ABE290038F600BE9EDA /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 93761ABB290038F600BE9EDA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		93761AC0290038F600BE9EDA /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 93761ABB290038F600BE9EDA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		93761AC2290038F600BE9EDA /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 93761ABB290038F600BE9EDA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
 		93CAB69228F04EAE00E8E6F2 /* Charts */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 93CAB69128F04EAE00E8E6F2 /* XCRemoteSwiftPackageReference "Charts" */;
