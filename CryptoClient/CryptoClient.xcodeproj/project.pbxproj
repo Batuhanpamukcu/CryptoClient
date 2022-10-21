@@ -15,6 +15,7 @@
 		93761AC1290038F600BE9EDA /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 93761AC0290038F600BE9EDA /* FirebaseFirestore */; };
 		93761AC3290038F600BE9EDA /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 93761AC2290038F600BE9EDA /* FirebaseStorage */; };
 		93761AC82901763800BE9EDA /* DirectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93761AC72901763800BE9EDA /* DirectorViewController.swift */; };
+		93761ACB2902796300BE9EDA /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93761ACA2902796300BE9EDA /* SignUpViewController.swift */; };
 		93CAB69028EF106400E8E6F2 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CAB68F28EF106400E8E6F2 /* DetailsViewController.swift */; };
 		93CAB69328F04EAE00E8E6F2 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 93CAB69228F04EAE00E8E6F2 /* Charts */; };
 		93CAB69A28F40AC600E8E6F2 /* Chart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CAB69928F40AC600E8E6F2 /* Chart.swift */; };
@@ -34,6 +35,7 @@
 		93761AAB28FEE5B400BE9EDA /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		93761AB9290037E400BE9EDA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		93761AC72901763800BE9EDA /* DirectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectorViewController.swift; sourceTree = "<group>"; };
+		93761ACA2902796300BE9EDA /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		93CAB68F28EF106400E8E6F2 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		93CAB69928F40AC600E8E6F2 /* Chart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chart.swift; sourceTree = "<group>"; };
 		93CAB69B28F57AA800E8E6F2 /* PillMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillMarker.swift; sourceTree = "<group>"; };
@@ -82,6 +84,14 @@
 				93761AC72901763800BE9EDA /* DirectorViewController.swift */,
 			);
 			path = Director;
+			sourceTree = "<group>";
+		};
+		93761AC92902792600BE9EDA /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				93761ACA2902796300BE9EDA /* SignUpViewController.swift */,
+			);
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 		93CAB69728F40A7600E8E6F2 /* Model */ = {
@@ -145,8 +155,9 @@
 			children = (
 				93761AC429016E4800BE9EDA /* Director */,
 				93761AAA28FEE4C400BE9EDA /* SignIn */,
-				93FF152328EEE2640080B590 /* Details */,
+				93761AC92902792600BE9EDA /* SignUp */,
 				93DB6CFC28E5D4E5004A0BB1 /* Initial */,
+				93FF152328EEE2640080B590 /* Details */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -340,6 +351,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93761ACB2902796300BE9EDA /* SignUpViewController.swift in Sources */,
 				93DB6CEB28E5CE01004A0BB1 /* ViewController.swift in Sources */,
 				93CAB69A28F40AC600E8E6F2 /* Chart.swift in Sources */,
 				93DB6CE728E5CE01004A0BB1 /* AppDelegate.swift in Sources */,

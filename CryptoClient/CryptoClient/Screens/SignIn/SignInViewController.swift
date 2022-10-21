@@ -11,30 +11,48 @@ import SwiftUI
 
 class SignInViewController: UIViewController {
 
-    @IBOutlet weak var emailText: UITextField!
+    @IBOutlet weak var emailText: UITextField! {
+        didSet {
+            emailText.leftViewMode = UITextField.ViewMode.always
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+            let image = UIImage(systemName: "mail")
+            imageView.image = image
+            emailText.leftView = imageView
+        }
+    }
     
-    @IBOutlet weak var passwordText: UITextField!
+    @IBOutlet weak var passwordText: UITextField! {
+        didSet {
+            passwordText.leftViewMode = UITextField.ViewMode.always
+            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+            let image = UIImage(systemName: "lock")
+            imageView.image = image
+            passwordText.leftView = imageView
+        }
+    }
     
     @IBOutlet weak var showPasswordButton: UIButton!
+    
+    var emailName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        emailText.text = emailName
+        
         self.navigationItem.hidesBackButton = true
         passwordText.isSecureTextEntry = true
         
-        /*
-        showPasswordButton.setImage(UIImage(named: "eye"), for: .normal)
-        showPasswordButton.imageView?.contentMode = .scaleAspectFill
-        */
     }
     
     @IBAction func showPasswordClicked(_ sender: Any) {
         if passwordText.text != "" {
             if passwordText.isSecureTextEntry == true {
                 passwordText.isSecureTextEntry = false
+                showPasswordButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
             } else {
                 passwordText.isSecureTextEntry = true
+                showPasswordButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
             }
         }
     }
@@ -58,17 +76,7 @@ class SignInViewController: UIViewController {
     
     @IBAction func signUpClicked(_ sender: Any) {
         
-        if emailText.text != "" && passwordText.text != "" {
-            Auth.auth().createUser(withEmail: emailText.text!, password: passwordText.text!) { authdata, error in
-                if let error = error {
-                    self.makeAlert(titleInput: "Error", massageInput: error.localizedDescription)
-                } else {
-                    self.performSegue(withIdentifier: "mainSegue", sender: nil)
-                }
-            }
-        } else {
-            makeAlert(titleInput: "Error", massageInput: "email and password must be entered")
-        }
+        performSegue(withIdentifier: "fromSignInVcToSignUpVc", sender: nil)
     }
     
     func makeAlert(titleInput: String, massageInput: String) {
