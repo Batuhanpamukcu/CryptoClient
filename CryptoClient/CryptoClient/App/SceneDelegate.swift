@@ -22,10 +22,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if currentUser != nil {
             let board = UIStoryboard(name: "Main", bundle: nil)
-            let viewController = board.instantiateViewController(withIdentifier: "mainView")
+            let detailsViewController = board.instantiateViewController(withIdentifier: "detailsView") as! DetailsViewController
+            window?.rootViewController = detailsViewController
+        } else {
+            let board = UIStoryboard(name: "Main", bundle: nil)
+            let viewController = board.instantiateViewController(withIdentifier: "mainView") as! ViewController
             window?.rootViewController = viewController
-        }
-        */
+        }*/
+
+        
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 
